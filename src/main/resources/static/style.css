@@ -144,3 +144,12 @@ body {
     margin: 1px;
     padding: 2px 0 2px 0;
 }
+
+.form-container{
+    border: solid 1px #c3c3c3;
+}
+.form-row-container{
+    background-color: azure;
+    padding: 10px;
+
+}
