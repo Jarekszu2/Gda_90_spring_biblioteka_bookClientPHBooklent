@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments :: headerlinks"> <!--doda treść fragmentu do obecnego taga-->
+    <meta charset="UTF-8">
+    <title>Index Page</title>
+</head>
+<body>
+<header th:replace="fragments :: navigator"></header>
+
+<main role="main">
+    <h1>Siemano!</h1>
+
+    <footer th:replace="fragments :: footer"></footer>
+</main>
+
+<div th:replace="fragments :: footerscripts"></div>
+</body>
+</html>
