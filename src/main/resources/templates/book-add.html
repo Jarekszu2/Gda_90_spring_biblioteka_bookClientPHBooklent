@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-md-6">
                             <select th:name="publishingHouseId" id="publishingHouseId" class="form-control col-md-12">
-                                <option th:each="ph : ${publishingHouses}" th:text="${ph.getName()}" th:value="${ph.getId()}"/>
+                                <option th:each="ph : ${publishingHouses}" th:text="${ph.getName()}" th:value="${ph.getId()}" th:selected="${book.getPublishingHouse().getId() == ph.getId()}"/>
                             </select>
                         </div>
                     </div>

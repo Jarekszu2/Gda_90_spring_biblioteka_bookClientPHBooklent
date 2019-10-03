@@ -18,7 +18,7 @@ public class PublishingHouse {
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @OneToMany(mappedBy = "publishingHouse", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "publishingHouse", fetch = FetchType.LAZY)
     private Set<Book> books;
 
     public PublishingHouse(String name) {
