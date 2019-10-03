@@ -39,6 +39,13 @@ public class BookController {
         return "book-add";
     }
 
+    @GetMapping("/remove/{id}")
+    public String remove(@PathVariable(name = "id") Long id) {
+        bookService.remove(id);
+
+        return "redirect:/book/list";
+    }
+
     @GetMapping("/edit/{id}")
     public String getForm(Model model, @PathVariable(name = "id") Long id) {
         Optional<Book> optionalBook = bookService.getById(id);
