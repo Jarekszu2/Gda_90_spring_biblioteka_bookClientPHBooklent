@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.Optional;
 
@@ -40,9 +41,15 @@ public class BookController {
     }
 
     @GetMapping("/remove/{id}")
-    public String remove(@PathVariable(name = "id") Long id) {
+    public String remove(
+            HttpServletRequest request,
+            @PathVariable(name = "id") Long id) {
+        String referer = request.getHeader("referer");
         bookService.remove(id);
 
+        if (referer != null) {
+            return "redirect:" + referer;
+        }
         return "redirect:/book/list";
     }
 
