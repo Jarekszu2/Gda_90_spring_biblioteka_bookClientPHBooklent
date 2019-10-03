@@ -24,7 +24,9 @@
                 <div class="row col-md-5">
                     <div class="col-md-4">
                         <a th:href="@{'/ph/remove/'+${house.getId()}}" class="col-md-12">
-                            <button type="button" class="btn btn-danger col-md-12">Remove</button>
+                            <button type="button" class="btn btn-danger col-md-12"
+                                    th:disabled="${house.getBooks().size() != 0}">Remove
+                            </button>
                         </a>
                     </div>
                     <div class="col-md-4">

@@ -27,6 +27,13 @@ public class PublishingHouseService {
     }
 
     public void remove(Long id) {
-        publishingHouseRepository.deleteById(id);
+        if (publishingHouseRepository.existsById(id)) {
+            PublishingHouse publishingHouse = publishingHouseRepository.getOne(id);
+            if (publishingHouse.getBooks().size() == 0) {
+                publishingHouseRepository.deleteById(id);
+            }else{
+                System.err.println("Unable to remove publishing house with assigned books to it.");
+            }
+        }
     }
 }
