@@ -129,27 +129,38 @@ body {
     margin: 1px;
     padding: 2px 0 2px 0;
 }
+
 .list-row:nth-child(even) {
     background-color: azure;
     margin: 1px;
     padding: 2px 0 2px 0;
 }
+
 .list-row:nth-child(odd):hover {
     background-color: #deebde;
     margin: 1px;
     padding: 2px 0 2px 0;
 }
+
 .list-row:nth-child(even):hover {
     background-color: #deebeb;
     margin: 1px;
     padding: 2px 0 2px 0;
 }
 
-.form-container{
+.form-container {
     border: solid 1px #c3c3c3;
 }
-.form-row-container{
+
+.form-row-container {
     background-color: azure;
     padding: 10px;
 
+}
+
+.value-cell {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
 }

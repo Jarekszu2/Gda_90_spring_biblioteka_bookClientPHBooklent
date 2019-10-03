@@ -69,10 +69,12 @@ public class BookController {
 
     @GetMapping("/details/{id}")
     public String details(Model model,
+                          HttpServletRequest request,
                           @PathVariable(name = "id") Long id) {
         Optional<Book> optionalBook = bookService.getById(id);
         if (optionalBook.isPresent()) {
             model.addAttribute("book", optionalBook.get());
+            model.addAttribute("referer", request.getHeader("referer"));
             return "book-details";
         }
         return "redirect:/book/list";

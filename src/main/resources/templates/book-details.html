@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head> <!--doda treść fragmentu do obecnego taga-->
     <meta charset="UTF-8">
-    <title>Index Page</title>
+    <title>Book details</title>
 
     <div th:replace="fragments :: headerlinks" th:remove="tag"></div>
 </head>
@@ -13,68 +13,61 @@
     <div class="container">
         <div class="row col-md-12 list-container">
             <div class="row col-md-12">
-                <h1>Book form</h1>
+                <h1>Book details</h1>
             </div>
+            <div class="row col-md-12 form-container" th:object="${book}">
+                <div class="row col-md-12 form-row-container">
+                    <div class="col-md-6">
+                        <label for="id">Id:</label>
+                    </div>
+                    <div class="col-md-6 value-cell" id="id" th:text="*{id}">
+                    </div>
+                </div>
 
-            <div class="row col-md-12 form-container">
-                <form th:action="@{/book/add}" method="post" th:object="${book}" class="col-md-12">
-                    <input type="hidden" th:field="*{id}" th:value="*{id}">
+                <div class="row col-md-12 form-row-container">
+                    <div class="col-md-6">
+                        <label for="title">Title:</label>
+                    </div>
+                    <div class="col-md-6 value-cell" id="title" th:text="*{title}">
+                    </div>
+                </div>
+                <div class="row col-md-12 form-row-container">
+                    <div class="col-md-6">
+                        <label for="yearWritten">Year written:</label>
+                    </div>
+                    <div class="col-md-6 value-cell" id="yearWritten" th:text="*{yearWritten}">
+                    </div>
+                </div>
+                <div class="row col-md-12 form-row-container">
+                    <div class="col-md-6">
+                        <label for="numberOfPages">Number of pages:</label>
+                    </div>
+                    <div class="col-md-6 value-cell" id="numberOfPages" th:text="*{numberOfPages}">
+                    </div>
+                </div>
+                <div class="row col-md-12 form-row-container">
+                    <div class="col-md-6">
+                        <label for="numberOfAvailableCopies">Number of available copies:</label>
+                    </div>
+                    <div class="col-md-6 value-cell" id="numberOfAvailableCopies" th:text="*{numberOfAvailableCopies}">
+                    </div>
+                </div>
+                <div class="row col-md-12 form-row-container">
+                    <div class="col-md-6">
+                        <label for="publishingHouseId">Publishing house:</label>
+                    </div>
+                    <div class="col-md-6 value-cell" id="publishingHouseId"
+                         th:text="${book.getPublishingHouse().getName()}">
+                    </div>
+                </div>
 
-                    <div class="row col-md-12 form-row-container">
-                        <div class="col-md-6">
-                            <label for="title">Title:</label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" id="title" th:field="*{title}" th:value="*{title}" class="form-control col-md-12">
-                        </div>
+                <div class="row col-md-12">
+                    <div class="offset-6 col-md-6">
+                        <a th:href="@{${referer}}">
+                            <button type="button" class="btn btn-primary offset-3 col-md-6">Back</button>
+                        </a>
                     </div>
-                    <div class="row col-md-12 form-row-container">
-                        <div class="col-md-6">
-                            <label for="yearWritten">Year written:</label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="number" max="2020" id="yearWritten" th:field="*{yearWritten}" th:value="*{yearWritten}" class="form-control col-md-12">
-                        </div>
-                    </div>
-                    <div class="row col-md-12 form-row-container">
-                        <div class="col-md-6">
-                            <label for="numberOfPages">Number of pages:</label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="number" min="0" id="numberOfPages" th:field="*{numberOfPages}" th:value="*{numberOfPages}" class="form-control col-md-12">
-                        </div>
-                    </div>
-                    <div class="row col-md-12 form-row-container">
-                        <div class="col-md-6">
-                            <label for="numberOfAvailableCopies">Number of available copies:</label>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="number" min="0" id="numberOfAvailableCopies" th:field="*{numberOfAvailableCopies}" th:value="*{numberOfAvailableCopies}" class="form-control col-md-12">
-                        </div>
-                    </div>
-                    <div class="row col-md-12 form-row-container">
-                        <div class="col-md-6">
-                            <label for="publishingHouseId">Publishing house:</label>
-                        </div>
-                        <div class="col-md-6">
-                            <select th:name="publishingHouseId" id="publishingHouseId" class="form-control col-md-12">
-                                <option th:each="ph : ${publishingHouses}"
-                                        th:text="${ph.getName()}"
-                                        th:value="${ph.getId()}"
-                                        th:selected="${book.getPublishingHouse() != null && book.getPublishingHouse().getId() == ph.getId()}"/>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="row col-md-12">
-                        <div class="col-md-6">
-                            <button type="reset" class="btn btn-warning offset-3 col-md-6">Reset</button>
-                        </div>
-                        <div class="col-md-6">
-                            <button type="submit" class="btn btn-primary offset-3 col-md-6">Send</button>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
