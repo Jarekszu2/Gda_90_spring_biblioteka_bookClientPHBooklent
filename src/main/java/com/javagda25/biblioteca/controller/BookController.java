@@ -67,6 +67,16 @@ public class BookController {
         return "redirect:/book/list";
     }
 
+    @GetMapping("/details/{id}")
+    public String details(Model model,
+                          @PathVariable(name = "id") Long id) {
+        Optional<Book> optionalBook = bookService.getById(id);
+        if (optionalBook.isPresent()) {
+            model.addAttribute("book", optionalBook.get());
+            return "book-details";
+        }
+        return "redirect:/book/list";
+    }
 
     @PostMapping("/add")
     public String addBook(Book book, Long publishingHouseId) {
