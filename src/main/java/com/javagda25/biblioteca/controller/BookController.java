@@ -32,7 +32,7 @@ public class BookController {
 
     @GetMapping("/add")
     public String getForm(Model model, Book book) {
-        book.setYearWritten(LocalDate.now().getYear());
+        book.setYearWritten(LocalDate.now().getYear()); // dodane aby podczas wypełniania arkusza dodawania książki w polu pojawiła się podpowiedź/sugestia wartości
 
         model.addAttribute("publishingHouses", publishingHouseService.getAll());
         model.addAttribute("book", book);

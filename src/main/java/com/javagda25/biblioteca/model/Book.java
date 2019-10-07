@@ -26,8 +26,8 @@ public class Book  {
     private int numberOfPages;
     private int numberOfAvailableCopies;
 
-//    @Formula(value = "(select count(*) from BookLent bl where bl.book_id = id and bl.dateReturned is null )")
-//    private int numberOfBorrowedCopies;
+    @Formula(value = "(select count(*) from book_lent bl where bl.book_id = id and bl.date_returned is null )")
+    private int numberOfBorrowedCopies;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private PublishingHouse publishingHouse;
@@ -36,11 +36,11 @@ public class Book  {
 //    @EqualsAndHashCode.Exclude
 //    @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)
 //    private Set<Author> authors;
-//
-//    @ToString.Exclude
-//    @EqualsAndHashCode.Exclude
-//    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
-//    private Set<BookLent> currentLents;
+
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
+    private Set<BookLent> currentLents;
 
     public Book(String title, int yearWritten, int numberOfPages, int numberOfAvailableCopies) {
         this.title = title;

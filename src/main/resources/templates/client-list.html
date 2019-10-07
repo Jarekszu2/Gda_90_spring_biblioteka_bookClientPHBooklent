@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head> <!--doda treść fragmentu do obecnego taga-->
+    <meta charset="UTF-8">
+    <title>client-list</title>
+
+    <div th:replace="fragments :: headerlinks" th:remove="tag"></div>
+</head>
+<body>
+<header th:replace="fragments :: navigator"></header>
+
+<main role="main" class="main">
+    <div class="container">
+        <div class="row col-md-12 list-container">
+            <div class="row col-md-12">
+                <h1>Client list</h1>
+            </div>
+            <div class="row col-md-12 list-header-row">
+                <div class="col-md-1">Id</div>
+                <div class="col-md-1">Name</div>
+                <div class="col-md-2">Surname</div>
+                <div class="col-md-1">No Id</div>
+                <div class="col-md-7"></div> <!--Guziki-->
+            </div>
+            <div class="row col-md-12 list-row" th:each="client : ${clients}">
+                <div class="col-md-1" th:text="${client.getId()}"></div>
+                <div class="col-md-1" th:text="${client.getName()}"></div>
+                <div class="col-md-2" th:text="${client.getSurname()}"></div>
+                <div class="col-md-1" th:text="${client.getIdNumber()}"></div>
+                <div class="row col-md-7">
+                    <div class="col-md-3">
+                        <a th:href="@{'/client/remove/'+${client.getId()}}" class="col-md-12">
+                            <button type="button" class="btn btn-danger col-md-12">Remove</button>
+                        </a>
+                    </div>
+                    <div class="col-md-2">
+                        <a th:href="@{'/client/edit/'+${client.getId()}}" class="col-md-12">
+                            <button type="button" class="btn btn-primary col-md-12">Edit</button>
+                        </a>
+                    </div>
+                    <div class="col-md-2">
+                        <a th:href="@{'/client/books/'+${client.getId()}}" class="col-md-12">
+                            <button type="button" class="btn btn-success col-md-12">Books</button>
+                        </a>
+                    </div>
+                    <div class="col-md-2">
+                        <a th:href="@{'/client/details/'+${client.getId()}}" class="col-md-12">
+                            <button type="button" class="btn btn-info col-md-12">Details</button>
+                        </a>
+                    </div>
+                    <div class="col-md-3">
+                        <a th:href="@{'/client/addBook/'+${client.getId()}}" class="col-md-12">
+                            <button type="button" class="btn btn-warning col-md-12">Add book</button>
+                        </a>
+                    </div>
+                    <!--<div class="col-md-1">-->
+                        <!--<a th:href="@{'/client/details/'+${client.getId()}}" class="col-md-12">-->
+                            <!--<button type="button" class="btn btn-info col-md-12">Details</button>-->
+                        </a>
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="fragments :: footer"></footer>
+</main>
+
+<div th:replace="fragments :: footerscripts"></div>
+</body>
+</html>

@@ -1,0 +1,8 @@
+- po co jest cascada przy usuwaniu
+- jak w html zapisać not null (PublishinhHouse add)
+- jak w html zapisać, że coś jest unikalne (Client nrId)
+- html (np. add-client) co znaczą parametry: label for, type, id, field, value
+- pytania: czemu PublishinhHouse OneToMany books - FetchType.Lazy, a Book OneToMany currentLents - FetchType.Eager
+- po co jest referer np. w BookService delete, jak i tak wywołujemy z listy i wraca po delete do listy
+- client-books.html: listuje List<Book> if (dateReturned == null) - jak zrobić?
+- co tak naprawdę jest przekazywane z html do @PostMapping?

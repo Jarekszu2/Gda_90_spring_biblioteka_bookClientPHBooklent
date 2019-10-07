@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform">
+<head> <!--doda treść fragmentu do obecnego taga-->
+    <meta charset="UTF-8">
+    <title>client-books</title>
+
+    <div th:replace="fragments :: headerlinks" th:remove="tag"></div>
+</head>
+<body>
+<header th:replace="fragments :: navigator"></header>
+
+<main role="main" class="main">
+    <div class="container">
+        <div class="row col-md-12 list-container">
+            <div class="row col-md-12">
+                <div class="header-client" th:text="${client.getName()}"></div>
+                <h1>Clients list of books</h1>
+
+            </div>
+            <div class="row col-md-12 list-header-row">
+                <div class="col-md-1">Id</div>
+                <div class="col-md-3">Title</div>
+                <div class="col-md-1">Year written</div>
+                <div class="col-md-1">No Pages</div>
+                <div class="col-md-6"></div> <!--Guziki-->
+            </div>
+
+            <div class="row col-md-12 list-row" th:each="booklent : ${booklents}">
+
+                <!--<c:if th:test="${booklent.getDateReturned() == null}">-->
+
+                <div class="col-md-1" th:text="${booklent.getBook().getId()}"></div>
+                <div class="col-md-3" th:text="${booklent.getBook().getTitle()}"></div>
+                <div class="col-md-1" th:text="${booklent.getBook().getYearWritten()}"></div>
+                <div class="col-md-1" th:text="${booklent.getBook().getNumberOfPages()}"></div>
+                <div class="row col-md-6">
+                    <div class="col-md-4">
+                        <a th:href="@{'/bl/return/'+${booklent.getId()}}" class="col-md-12">
+                            <button type="button" class="btn btn-primary col-md-12">Return book</button>
+                        </a>
+                    </div>
+                    <div class="col-md-8">
+                        <a th:href="@{${referer}}">
+                            <button type="button" class="btn btn-warning offset-3 col-md-6">Back</button>
+                        </a>
+                    </div>
+                </div>
+
+                <!--</c:if>-->
+
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="fragments :: footer"></footer>
+</main>
+
+<div th:replace="fragments :: footerscripts"></div>
+</body>
+</html>

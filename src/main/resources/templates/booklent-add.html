@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head> <!--doda treść fragmentu do obecnego taga-->
+    <meta charset="UTF-8">
+    <title>booklent-add</title>
+
+    <div th:replace="fragments :: headerlinks" th:remove="tag"></div>
+</head>
+<body>
+<header th:replace="fragments :: navigator"></header>
+
+<main role="main" class="main">
+    <div class="container">
+        <div class="row col-md-12 list-container">
+            <div class="row col-md-12">
+                <h1>BookLent form</h1>
+            </div>
+
+            <div class="row col-md-12 form-container">
+                <form th:action="@{/bl/add}" method="post" th:object="${booklent}" class="col-md-12">
+                    <input type="hidden" th:field="*{id}" th:value="*{id}">
+                    <input type="hidden" th:field="*{dateLent}" th:value="*{dateLent}">
+                    <input type="hidden" th:field="*{dateReturned}" th:value="*{dateReturned}">
+                    <div class="row col-md-12 form-row-container">
+                        <div class="col-md-6">
+                            <label for="bookId">Book:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <select th:name="bookId" id="bookId" class="form-control col-md-12">
+                                <option th:each="book : ${books}"
+                                        th:text="${book.getTitle()}"
+                                        th:value="${book.getId()}"
+                                        th:selected="${booklent.getBook() != null && booklent.getBook().getId() == book.getId()}"/>
+                            </select>
+                        </div>
+                    </div>
+                    <!--// chcemy w formularzu wybrać pozycję z listy wyboru-->
+                    <div class="row col-md-12 form-row-container">
+                        <div class="col-md-6">
+                            <label for="clientId">Client:</label>
+                        </div>
+                        <div class="col-md-6">
+                            <select th:name="clientId" id="clientId" class="form-control col-md-12">
+                                <option th:each="client : ${clients}"
+                                        th:text="${client.getName()}"
+                                        th:value="${client.getId()}"
+                                        th:selected="${booklent.getClient() != null && booklent.getClient().getId() == client.getId()}"/>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row col-md-12">
+                        <div class="col-md-6">
+                            <button type="reset" class="btn btn-warning offset-3 col-md-6">Reset</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary offset-3 col-md-6">Send</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer th:replace="fragments :: footer"></footer>
+</main>
+
+<div th:replace="fragments :: footerscripts"></div>
+</body>
+</html>
