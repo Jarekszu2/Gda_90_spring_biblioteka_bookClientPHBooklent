@@ -32,15 +32,16 @@ public class Book  {
     @ManyToOne(fetch = FetchType.LAZY)
     private PublishingHouse publishingHouse;
 
-//    @ToString.Exclude
-//    @EqualsAndHashCode.Exclude
-//    @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)
-//    private Set<Author> authors;
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)
+    private Set<Author> authors;
 
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
     private Set<BookLent> currentLents;
+
 
     public Book(String title, int yearWritten, int numberOfPages, int numberOfAvailableCopies) {
         this.title = title;

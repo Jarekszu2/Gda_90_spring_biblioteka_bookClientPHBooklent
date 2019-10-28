@@ -27,25 +27,25 @@
 
             <div class="row col-md-12 list-row" th:each="booklent : ${booklents}">
 
-                <!--<c:if th:test="${booklent.getDateReturned() == null}">-->
-
-                <div class="col-md-1" th:text="${booklent.getBook().getId()}"></div>
-                <div class="col-md-3" th:text="${booklent.getBook().getTitle()}"></div>
-                <div class="col-md-1" th:text="${booklent.getBook().getYearWritten()}"></div>
-                <div class="col-md-1" th:text="${booklent.getBook().getNumberOfPages()}"></div>
-                <div class="row col-md-6">
-                    <div class="col-md-4">
-                        <a th:href="@{'/bl/return/'+${booklent.getId()}}" class="col-md-12">
-                            <button type="button" class="btn btn-primary col-md-12">Return book</button>
-                        </a>
+                <th:block th:if="${booklent.getDateReturned() == null}">
+                    <div class="col-md-1" th:text="${booklent.getBook().getId()}"></div>
+                    <div class="col-md-3" th:text="${booklent.getBook().getTitle()}"></div>
+                    <div class="col-md-1" th:text="${booklent.getBook().getYearWritten()}"></div>
+                    <div class="col-md-1" th:text="${booklent.getBook().getNumberOfPages()}"></div>
+                    <div class="row col-md-6">
+                        <div class="col-md-4">
+                            <a th:href="@{'/bl/return/'+${booklent.getId()}}" class="col-md-12">
+                                <button type="button" class="btn btn-primary col-md-12">Return book</button>
+                            </a>
+                        </div>
+                        <div class="col-md-8">
+                            <a th:href="@{${referer}}">
+                                <button type="button" class="btn btn-warning offset-3 col-md-6">Back</button>
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-md-8">
-                        <a th:href="@{${referer}}">
-                            <button type="button" class="btn btn-warning offset-3 col-md-6">Back</button>
-                        </a>
-                    </div>
-                </div>
 
+                </th:block>
                 <!--</c:if>-->
 
             </div>
